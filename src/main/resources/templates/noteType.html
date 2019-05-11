@@ -1,0 +1,38 @@
+<ul class="list-group" xmlns:th="http://www.thymeleaf.org">
+    <li class="list-group-item" style="background-color: ghostwhite" onclick="listNote()"><b> ➜ Tất cả chủ đề</b></li>
+    <li class="list-group-item" th:each="noteType:${noteTypes}" style="background-color: ghostwhite"
+        th:onclick="'listByNoteType(' + __${noteType.id}__ +')'">
+        <span><b th:text="'➜ ' + ${noteType.name}"></b></span>
+        <span>
+            <a class="btn btn-xs btn-success pull-right" data-toggle="modal" th:href="'#modal' + __${noteType.id}__"><i
+                    class="fas fa-edit"></i></i></a>
+        </span>
+        <div class="modal fade" th:id="'modal' + __${noteType.id}__">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Chủ đề</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="noteUpdateForm" role="form">
+                            <div class="form-group">
+                                <label>Tên chủ đề:</label>
+                                <input th:id="'titleUpdate' + __${noteType.id}__" type="text" class="form-control"
+                                       th:value="${noteType.name}" maxlength="24">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal"
+                                th:onclick="'updateNoteType(' + __${noteType.id}__ +')'"><i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" data-dismiss="modal"
+                                th:onclick="'removeNoteType(' + __${noteType.id}__ +')'" class="btn btn-danger"><i
+                                class="far fa-trash-alt"></i></button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </li>
+</ul>

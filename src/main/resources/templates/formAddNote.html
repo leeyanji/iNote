@@ -1,0 +1,15 @@
+<form role="form" xmlns:th="http://www.thymeleaf.org/">
+    <div class="form-group">
+        <label>Tiêu đề:</label>
+        <input id="title_note" type="text" class="form-control" maxlength="80">
+        <label>Nội dung:</label>
+        <textarea class="form-control" id="content_note" cols="78" rows="10"></textarea>
+        <label>Chủ đề:</label>
+        <select id="note_type" class="form-control">
+            <option th:each="noteType:${allTypeNote}" th:value="${noteType.id}" th:text="${noteType.name}"
+                    required></option>
+        </select>
+    </div>
+    <button type="button" data-dismiss="modal" onclick="addNote()" class="btn btn-success"><i class="fas fa-save"></i>
+    </button>
+</form>

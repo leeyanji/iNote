@@ -1,0 +1,15 @@
+<form role="form" xmlns:th="http://www.thymeleaf.org/" th:object="${note}">
+    <div class="form-group">
+        <label>Tiêu đề:</label>
+        <input id="title_note_update" type="text" class="form-control" th:value="*{title}" maxlength="80">
+        <label>Nội dung:</label>
+        <textarea class="form-control" id="content_note_update" cols="78" rows="10" th:text="*{content}"></textarea>
+        <label>Chủ đề:</label>
+        <select id="note_type_update" class="form-control">
+            <div th:if="(*{noteType.id} != 0)">
+            <option th:each="noteType:${allTypeNote}" th:value="${noteType.id}" th:text="${noteType.name}" th:selected="(${noteType.id} == *{noteType.id})"></option>
+            </div>
+        </select>
+    </div>
+    <button type="button" data-dismiss="modal" th:onclick="'updateNote(' + __${note.id}__ +')'" class="btn btn-success"><i class="fas fa-save"></i></button>
+</form>

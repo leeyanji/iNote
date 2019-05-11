@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="layout/layout::header"></head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <!-- BRAND -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#alignment-example" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">iNote</a>
+        </div>
+
+        <!-- COLLAPSIBLE NAVBAR -->
+        <div class="collapse navbar-collapse" id="alignment-example">
+
+            <!-- Links -->
+            <ul class="nav navbar-nav">
+                <li><button type="button" data-toggle="modal" class="btn btn-success navbar-btn" href="#addNoteType">Thêm chủ đề</button></li>
+                <li><button type="button" data-toggle="modal" class="btn btn-info navbar-btn" href="#addNote">Thêm ghi chú</button></li>
+            </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchText" placeholder="Tìm kiếm theo chủ đề">
+                </div>
+                <button type="button" class="btn btn-default" onclick="searchByTitle()"><i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+
+    </div>
+</nav>
+<div class="col-md-12">
+    <div class="modal fade" id="addNoteType">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Thêm mới chủ đề</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label>Tên chủ đề:</label>
+                            <input id="title" type="text" class="form-control" maxlength="24">
+                        </div>
+                        <button type="button" data-dismiss="modal" onclick="addNoteType()" class="btn btn-success"><i
+                                class="fas fa-save"></i></button>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-----------------Them moi note-------------->
+    <div class="modal fade" id="addNote">
+        <div class="modal-dialog" xmlns:th="http://www.thymeleaf.org/">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Thêm mới ghi chú</h4>
+                </div>
+                <div id="formAddNote" class="modal-body"></div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</div>
+<div class="clearfix"></div>
+<div class="col-md-12">
+    <div id="listNoteType" class="col-md-3"></div>
+    <div class="col-md-9">
+        <div class="overflow-auto" id="listNote"></div>
+    </div>
+</div>
+</body>
+<footer th:replace="layout/layout::footer"></footer>
+<script th:src="@{/js/ajax.js}"></script>
+</html>
